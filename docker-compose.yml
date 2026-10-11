@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: driftboard
+      POSTGRES_PASSWORD: driftboard
+      POSTGRES_DB: driftboard
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U driftboard"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  server:
+    build: ./server
+    environment:
+      DRIFTBOARD_DATABASE_URL: postgresql+asyncpg://driftboard:driftboard@db:5432/driftboard
+      DRIFTBOARD_JWT_SECRET: ${DRIFTBOARD_JWT_SECRET:-not-a-production-secret-change-me}
+      DRIFTBOARD_CORS_ORIGINS: http://localhost:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000" # exposed for the interactive API docs at /docs
+
+  web:
+    build: ./web
+    depends_on:
+      - server
+    ports:
+      - "8080:80"
+
+volumes:
+  db-data:
