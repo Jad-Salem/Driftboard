@@ -70,6 +70,7 @@ cd ~/driftboard
 docker compose up -d
 ```
 
+Then open http://localhost:8080.
 
 **Stop** (closing the windows does not stop the app):
 
