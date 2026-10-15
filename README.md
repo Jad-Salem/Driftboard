@@ -1,6 +1,6 @@
 # Driftboard
 
-A real-time collaborative kanban board. Open the same board in two browsers and drag a card — the change appears in the other window, along with presence avatars and a live activity feed.
+A real-time collaborative kanban board. Open the same board in two browsers and drag a card, and the change appears in the other window, along with presence avatars and a live activity feed.
 
 **Stack:** FastAPI · async SQLAlchemy 2.0 · WebSockets · PostgreSQL/SQLite · React 18 · TypeScript (strict) · Zustand · Vite · Docker · GitHub Actions
 
