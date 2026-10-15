@@ -61,6 +61,31 @@ docker compose up --build
 
 Frontend at http://localhost:8080, interactive API docs at http://localhost:8000/docs.
 
+### Quick reference (Mac)
+
+**Start:** open Docker Desktop, then open Terminal and run:
+
+```bash
+cd ~/driftboard
+docker compose up -d
+```
+
+
+**Stop** (closing the windows does not stop the app):
+
+```bash
+cd ~/driftboard
+docker compose down
+```
+
+**Update** after changes are pushed to GitHub:
+
+```bash
+cd ~/driftboard
+git pull
+docker compose up -d --build
+```
+
 ### Local dev (SQLite, hot reload)
 
 ```bash
